@@ -1,0 +1,46 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Data Visualization Tool</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <div class="input-section">
+            <h2>Select Chart Type</h2>
+            <form method="POST">
+                {% csrf_token %}
+                <label for="chart">Library:</label>
+                <select id="chart" name="chart" onchange="updateSubtypes()">
+                    <option value="">-- Select --</option>
+                    <option value="matplotlib" {% if chart == "matplotlib" %}selected{% endif %}>Matplotlib</option>
+                    <option value="seaborn" {% if chart == "seaborn" %}selected{% endif %}>Seaborn</option>
+                    <option value="plotly" {% if chart == "plotly" %}selected{% endif %}>Plotly</option>
+                </select>
+
+                <label for="subtype">Subtype:</label>
+                <select id="subtype" name="subtype">
+                    <!-- Options inserted dynamically -->
+                </select>
+
+                <button type="submit">Generate Plot</button>
+            </form>
+        </div>
+
+        <div class="plot-section">
+            {% if image_url %}
+                <h3>Plot Output</h3>
+                <img src="{{ image_url }}" alt="Plot">
+            {% endif %}
+            {% if plot_div %}
+                <h3>Interactive Plot</h3>
+                {{ plot_div|safe }}
+            {% endif %}
+        </div>
+    </div>
+
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>

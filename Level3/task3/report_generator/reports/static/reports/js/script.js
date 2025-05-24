@@ -1,0 +1,1 @@
+console.log("Script loaded. Ready to handle uploads.");

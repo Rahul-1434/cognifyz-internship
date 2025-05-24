@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Upload CSV</title>
+    <link rel="stylesheet" href="/static/reports/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Upload CSV File</h1>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="file" name="csv_file" required>
+            <button type="submit">Generate Report</button>
+        </form>
+    </div>
+    <script src="/static/reports/js/script.js"></script>
+</body>
+</html>
